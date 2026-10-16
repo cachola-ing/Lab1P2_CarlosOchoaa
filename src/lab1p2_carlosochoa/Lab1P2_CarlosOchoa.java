@@ -57,6 +57,8 @@ public class Lab1P2_CarlosOchoa {
                     break;
 
                 case 5:
+                    eliminarProducto();
+                    break;
                 case 6:
                 case 7:
                 default:
@@ -67,7 +69,7 @@ public class Lab1P2_CarlosOchoa {
     }//fin del main
 
     public static void agregarProducto() {
-        System.out.println("==Agergar producto==");
+        System.out.println("==AGREGAR PRODUCTOS==");
         System.out.println("Ingrese el nombre del producto: ");
         String nombre = scanner.nextLine();
 
@@ -115,7 +117,7 @@ public class Lab1P2_CarlosOchoa {
     }
 
     public static void catalogoMostrar() {
-        System.out.println("==Catalogo de Productos==");
+        System.out.println("==CATALOGO DE PRODUCTOS==");
 
         if (nombres.size() == 0) {
             System.out.println("no hay productos registrados");
@@ -191,6 +193,32 @@ public class Lab1P2_CarlosOchoa {
             scanner.nextLine();
             precios.set(posActualizar, nuevoPrecio);
             System.out.println("Precio actualizado correctamente!");
+        }
+    }
+
+    public static void eliminarProducto() {
+        System.out.println("==ELIMINAR PRODUCTO==");
+        System.out.println("Ingrese el nombre del producto: ");
+        String eliminar = scanner.nextLine();
+
+        int posEliminar = -1;
+
+        for (int i = 0; i < nombres.size(); i++) {
+            if (nombres.get(i).equalsIgnoreCase(eliminar)) {
+                posEliminar = 1;
+            }
+
+        }
+        
+        if(posEliminar == -1){
+            System.out.println("El producto no existe!");
+        }else{
+            nombres.remove(posEliminar);
+            categorias.remove(posEliminar);
+            precios.remove(posEliminar);
+            stocks.remove(posEliminar);
+            
+            System.out.println("Producto Eliminado correctamente!");
         }
     }
 
