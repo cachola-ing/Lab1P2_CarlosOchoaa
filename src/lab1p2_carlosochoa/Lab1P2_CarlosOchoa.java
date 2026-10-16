@@ -221,5 +221,31 @@ public class Lab1P2_CarlosOchoa {
             System.out.println("Producto Eliminado correctamente!");
         }
     }
+    
+    public static void reoporteGeneral(){
+        
+        System.out.println("==REPORTE GENERAL==");
+        if(nombres.size() == 0){
+            System.out.println("no hay productos registrados");
+        }else{
+            int posCaro = 0;
+            int posBarato = 0;
+            
+            for (int i = 0; i < precios.size(); i++) {
+                if(precios.get(i) > precios.get(posCaro)){
+                    posCaro = i;
+                    
+                }
+                
+                if(precios.get(i) < precios.get(posBarato)){
+                    posBarato = i;
+                }
+                
+            }
+            
+            System.out.println("Producto mas c");
+            
+        }
+    }
 
 }//fin de la clase
