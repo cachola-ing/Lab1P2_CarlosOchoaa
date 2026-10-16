@@ -47,8 +47,15 @@ public class Lab1P2_CarlosOchoa {
                     agregarProducto();
                     break;
                 case 2:
+                    catalogoMostrar();
+                    break;
                 case 3:
+                    mostrarProducto();
+                    break;
                 case 4:
+                    actualizarProductos();
+                    break;
+
                 case 5:
                 case 6:
                 case 7:
@@ -88,42 +95,103 @@ public class Lab1P2_CarlosOchoa {
         } while (precio <= 0);
 
         int stock;
-        
-        do{
+
+        do {
             System.out.println("Ingrese la cantidad en stock: ");
             stock = scanner.nextInt();
-            
-            if(stock <= 0){
+
+            if (stock <= 0) {
                 System.out.println("El stock debe ser mayor a 0.");
             }
-        }while(stock <= 0);
+        } while (stock <= 0);
         scanner.nextLine();
-        
+
         nombres.add(nombre);
         categorias.add(categoria);
         precios.add(precio);
         stocks.add(stock);
-        
+
         System.out.println("producto agregado correctamente");
     }
-    public static void catalogoMostrar(){
+
+    public static void catalogoMostrar() {
         System.out.println("==Catalogo de Productos==");
-        
-        if(nombres.size() == 0){
+
+        if (nombres.size() == 0) {
             System.out.println("no hay productos registrados");
-            
-        }else{
+
+        } else {
             for (int i = 0; i < nombres.size(); i++) {
-                
+
                 System.out.println("Producto #" + (i + 1));
                 System.out.println("Nombre: " + nombres.get(i));
                 System.out.println("Categoria: " + categorias.get(i));
                 System.out.println("Precio: L." + precios.get(i));
                 System.out.println("Stocks: " + stocks.get(i));
-                
+                System.out.println("----------------------------------");
+
             }
         }
     }
-        
+
+    public static void mostrarProducto() {
+        System.out.println("==BUSCAR PRODUCTO==");
+
+        System.out.println("Ingrese el nombre del producto: ");
+        String buscar = scanner.nextLine();
+
+        int posBuscar = -1;
+
+        for (int i = 0; i < nombres.size(); i++) {
+            if (nombres.get(i).equalsIgnoreCase(buscar)) {
+                posBuscar = i;
+
+            }
+
+        }
+
+        if (posBuscar == -1) {
+            System.out.println("EL producto no existe:<");
+        } else {
+            System.out.println("Producto: " + nombres.get(posBuscar));
+            System.out.println("Categoria: " + categorias.get(posBuscar));
+            System.out.println("Precio: L." + precios.get(posBuscar));
+            System.out.println("Stocks: " + stocks.get(posBuscar));
+            System.out.println("========================================");
+        }
+    }
+
+    public static void actualizarProductos() {
+        System.out.println("==ACTUALIZAR PRECIO==");
+        System.out.println("Ingrese el nombre del producto: ");
+        String actualizar = scanner.nextLine();
+
+        int posActualizar = -1;
+
+        for (int i = 0; i < nombres.size(); i++) {
+            if (nombres.get(i).equalsIgnoreCase(actualizar)) {
+                posActualizar = i;
+            }
+
+        }
+        if (posActualizar == -1) {
+            System.out.println("El producto no existe");
+        } else {
+            double nuevoPrecio;
+
+            do {
+                System.out.println("Ingrese el nuevo precio: ");
+                nuevoPrecio = scanner.nextDouble();
+
+                if (nuevoPrecio <= 0) {
+                    System.out.println("el precio debe ser mayor a 0.");
+                }
+
+            } while (nuevoPrecio <= 0);
+            scanner.nextLine();
+            precios.set(posActualizar, nuevoPrecio);
+            System.out.println("Precio actualizado correctamente!");
+        }
+    }
 
 }//fin de la clase
